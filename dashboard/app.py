@@ -1,18 +1,20 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from pathlib import Path
 
 st.set_page_config(page_title="ChainSense", layout="wide")
 
-demo = True
+
+HERE = Path(__file__).parent
 
 # ---------- Load data ----------
 @st.cache_data
 def load_data():
-    prefix = "demo_data/" if demo else "../data/processed"
-    raw = pd.read_csv(prefix + "wallet_features.csv")
-    scaled = pd.read_csv(prefix + "wallet_features_scaled.csv")
-    txs = pd.read_csv(prefix + "transactions.csv")
+    base = HERE / "demo_data"
+    raw    = pd.read_csv(base / "wallet_features.csv")
+    scaled = pd.read_csv(base / "wallet_features_scaled.csv")
+    txs    = pd.read_csv(base / "transactions.csv")
     return raw, scaled, txs
 
 raw, scaled, txs = load_data()
