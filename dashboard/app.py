@@ -9,7 +9,7 @@ demo = True
 # ---------- Load data ----------
 @st.cache_data
 def load_data():
-    prefix = "demo_data" if demo else "../data/processed"
+    prefix = "demo_data/" if demo else "../data/processed"
     raw = pd.read_csv(prefix + "wallet_features.csv")
     scaled = pd.read_csv(prefix + "wallet_features_scaled.csv")
     txs = pd.read_csv(prefix + "transactions.csv")
